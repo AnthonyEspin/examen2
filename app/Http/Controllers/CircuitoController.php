@@ -7,58 +7,70 @@ use Illuminate\Http\Request;
 class CircuitoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar lista de circuitos.
      */
     public function index()
     {
-        //
+        return view('circuitos.index');  // vista lista
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar formulario para crear un circuito.
      */
     public function create()
     {
-        //
+        return view('circuitos.nuevo');  // vista nuevo
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar un nuevo circuito.
      */
     public function store(Request $request)
     {
-        //
+        // Validar datos básicos (ejemplo)
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+        ]);
+
+        // Aquí pondrías la lógica para guardar el circuito (por ejemplo, en la BD)
+
+        // Por ahora solo retornamos mensaje de éxito:
+        return redirect()->route('circuitos.index')->with('success', 'Circuito creado correctamente');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar un circuito específico.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Aquí puedes obtener el circuito por $id y pasarlo a la vista
+        return "Mostrar circuito con ID: " . $id;
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar formulario para editar un circuito.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        // Aquí obtienes el circuito para editar
+        return "Formulario para editar circuito con ID: " . $id;
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un circuito.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validar y actualizar datos
+        return "Actualizar circuito con ID: " . $id;
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un circuito.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Lógica para eliminar circuito
+        return "Eliminar circuito con ID: " . $id;
     }
 }
